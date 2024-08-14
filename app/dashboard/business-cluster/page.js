@@ -1,9 +1,12 @@
+"use client"
 import FilterSelect from '@/components/FilterSelect'
 import PageDescription from '@/components/PageDescription'
 import { Box, Grid, Stack, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Page() {
+    const [clusterFilter, setClusterFilter] = useState("");
+
     const clusterData = [
         { id: 1, name: "Food & Beverages (FnB)", image: "image1" },
         { id: 2, name: "Kesehatan", image: "image2" },
@@ -19,6 +22,23 @@ export default function Page() {
         { id: 12, name: "Teknologi Digital", image: "image12" },
         { id: 13, name: "Hiburan", image: "image13" },
         { id: 14, name: "Energi", image: "image14" },
+    ]
+
+    const clusterFilterData = [
+        "Food & Beverages",
+        "Kesehatan",
+        "Manufaktur",
+        "Perkebunan & Kehutanan",
+        "Keuangan",
+        "Asuransi & Dana Pensiun",
+        "Pangan & Pupuk",
+        "Transportasi & Logistik",
+        "Pariwisata",
+        "Telekomunikasi & Media",
+        "Pendidikan",
+        "Teknologi Digital",
+        "Hiburan",
+        "Energi",
     ]
 
     return (
@@ -39,7 +59,7 @@ export default function Page() {
             />
 
             <Stack width={"100%"} px={"110px"} justifyContent={"flex-start"}>
-                <FilterSelect filterName={"Klaster"} labelName={"Pilih klaster"} />
+                <FilterSelect filterName={"Klaster"} labelName={"Pilih klaster"} filterData={clusterFilterData} filter={clusterFilter} setFilter={setClusterFilter}/>
             </Stack>
             
             <Box width={"100%"} px={"110px"}>

@@ -1,3 +1,4 @@
+"use client"
 import PageDescription from '@/components/PageDescription'
 import { Box, Grid, Stack } from '@mui/material'
 import React from 'react'

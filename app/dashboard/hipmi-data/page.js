@@ -1,9 +1,19 @@
+"use client"
 import FilterSelect from '@/components/FilterSelect'
 import PageDescription from '@/components/PageDescription'
 import { Box, Grid, Stack, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Page() {
+    const [dataFilter, setDataFilter] = useState("");
+
+    const dataFilterData = [
+        "Data Anggota",
+        "Aktivitas & Acara",
+        "Pencapaian & Penghargaan",
+        "Laporan Keuangan",
+    ]
+
     return (
         <Box
             width={"100%"}
@@ -22,7 +32,7 @@ export default function Page() {
             />
 
             <Stack width={"100%"} px={"110px"} justifyContent={"flex-start"}>
-                <FilterSelect filterName={"Klaster"} labelName={"Pilih klaster"} />
+                <FilterSelect filterName={"Kategori"} labelName={"Pilih Data"} filterData={dataFilterData} filter={dataFilter} setFilter={setDataFilter} />
             </Stack>
 
             <Box width={"100%"} px={"110px"} pb={"100px"}>

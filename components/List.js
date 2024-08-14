@@ -30,7 +30,7 @@ export default function List({ listName }) {
             categories: "Restoran",
             angkatan: "2022",
             description:
-                "Giulia's Chicago Style Pizzeria merupakan restoran rumahan yang mengusung tema western, dengan menu utamanya yaitu pizza tebal ala Chicago yang terlihat seperti pie. Giulia's Pizzeria sering membuka booth di berbagai event yang digemari anak muda.",
+                "Giulia&apos;s Chicago Style Pizzeria merupakan restoran rumahan yang mengusung tema western, dengan menu utamanya yaitu pizza tebal ala Chicago yang terlihat seperti pie. Giulia&apos;s Pizzeria sering membuka booth di berbagai event yang digemari anak muda.",
             address:
                 "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
             hours: "10:30 - 21:00",
@@ -194,7 +194,7 @@ export default function List({ listName }) {
 
 
                                     <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify'>
-                                        Giulia's Chicago Style Pizzeria merupakan restoran rumahan yang mengusung tema western, dengan menu utamanya yaitu pizza tebal ala Chicago yang terlihat seperti pie. Giulia's Pizzeria sering membuka booth di berbagai event yang digemari anak muda.
+                                        Giulia&apos;s Chicago Style Pizzeria merupakan restoran rumahan yang mengusung tema western, dengan menu utamanya yaitu pizza tebal ala Chicago yang terlihat seperti pie. Giulia&apos;s Pizzeria sering membuka booth di berbagai event yang digemari anak muda.
                                     </Typography>
 
                                     <>
