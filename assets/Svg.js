@@ -15,14 +15,14 @@ export function SortIcon() {
             <path d="M17.5 1H7.5" stroke="#8F8D8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M13.5 5H7.5" stroke="#8F8D8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M10.5 9H7.5" stroke="#8F8D8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M3.64291 1V14.143M3.64291 14.143L6.5 11.5M3.64291 14.143L1 11.5" stroke="#8F8D8F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3.64291 1V14.143M3.64291 14.143L6.5 11.5M3.64291 14.143L1 11.5" stroke="#8F8D8F" strokeWidth="1.2" strokeLinecap="round" stroke-linejoin="round" />
         </SvgIcon>
     )
 }
 
 export function ArrowDownIcon() {
     return (
-        <SvgIcon width="29" height="34" viewBox="0 0 29 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <SvgIcon sx={{ fontSize: "20px"}} viewBox="0 0 29 34">
             <path d="M7.25 12.75L14.5 21.25L21.75 12.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </SvgIcon>
     )

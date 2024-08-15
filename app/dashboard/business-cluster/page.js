@@ -3,25 +3,41 @@ import FilterSelect from '@/components/FilterSelect'
 import PageDescription from '@/components/PageDescription'
 import { Box, Grid, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import ClusterImage1 from '@/assets/Business Cluster/cluster-image-1.png';
+import ClusterImage2 from '@/assets/Business Cluster/cluster-image-2.png';
+import ClusterImage3 from '@/assets/Business Cluster/cluster-image-3.png';
+import ClusterImage4 from '@/assets/Business Cluster/cluster-image-4.png';
+import ClusterImage5 from '@/assets/Business Cluster/cluster-image-5.png';
+import ClusterImage6 from '@/assets/Business Cluster/cluster-image-6.png';
+import ClusterImage7 from '@/assets/Business Cluster/cluster-image-7.png';
+import ClusterImage8 from '@/assets/Business Cluster/cluster-image-8.png';
+import ClusterImage9 from '@/assets/Business Cluster/cluster-image-9.png';
+import ClusterImage10 from '@/assets/Business Cluster/cluster-image-10.png';
+import ClusterImage11 from '@/assets/Business Cluster/cluster-image-11.png';
+import ClusterImage12 from '@/assets/Business Cluster/cluster-image-12.png';
+import ClusterImage13 from '@/assets/Business Cluster/cluster-image-13.png';
+import ClusterImage14 from '@/assets/Business Cluster/cluster-image-14.png';
+import Image from 'next/image'
+
 
 export default function Page() {
     const [clusterFilter, setClusterFilter] = useState("");
 
     const clusterData = [
-        { id: 1, name: "Food & Beverages (FnB)", image: "image1" },
-        { id: 2, name: "Kesehatan", image: "image2" },
-        { id: 3, name: "Manufaktur", image: "image3" },
-        { id: 4, name: "Perkebunan & Kehutanan", image: "image4" },
-        { id: 5, name: "Keuangan", image: "image5" },
-        { id: 6, name: "Asuransi & Dana Pensiun", image: "image6" },
-        { id: 7, name: "Pangan & Pupuk", image: "image7" },
-        { id: 8, name: "Transportasi & Logistik", image: "image8" },
-        { id: 9, name: "Pariwisata", image: "image9" },
-        { id: 10, name: "Telekomunikasi & Media", image: "image10" },
-        { id: 11, name: "Pendidikan", image: "image11" },
-        { id: 12, name: "Teknologi Digital", image: "image12" },
-        { id: 13, name: "Hiburan", image: "image13" },
-        { id: 14, name: "Energi", image: "image14" },
+        { id: 1, name: "Food & Beverages (FnB)", image: ClusterImage1 },
+        { id: 2, name: "Kesehatan", image: ClusterImage2 },
+        { id: 3, name: "Manufaktur", image: ClusterImage3 },
+        { id: 4, name: "Perkebunan & Kehutanan", image: ClusterImage4 },
+        { id: 5, name: "Keuangan", image: ClusterImage5 },
+        { id: 6, name: "Asuransi & Dana Pensiun", image: ClusterImage6 },
+        { id: 7, name: "Pangan & Pupuk", image: ClusterImage7 },
+        { id: 8, name: "Transportasi & Logistik", image: ClusterImage8 },
+        { id: 9, name: "Pariwisata", image: ClusterImage9 },
+        { id: 10, name: "Telekomunikasi & Media", image: ClusterImage10 },
+        { id: 11, name: "Pendidikan", image: ClusterImage11 },
+        { id: 12, name: "Teknologi Digital", image: ClusterImage12 },
+        { id: 13, name: "Hiburan", image: ClusterImage13 },
+        { id: 14, name: "Energi", image: ClusterImage14 },
     ]
 
     const clusterFilterData = [
@@ -59,9 +75,9 @@ export default function Page() {
             />
 
             <Stack width={"100%"} px={"110px"} justifyContent={"flex-start"}>
-                <FilterSelect filterName={"Klaster"} labelName={"Pilih klaster"} filterData={clusterFilterData} filter={clusterFilter} setFilter={setClusterFilter}/>
+                <FilterSelect filterName={"Klaster"} labelName={"Pilih klaster"} filterData={clusterFilterData} filter={clusterFilter} setFilter={setClusterFilter} />
             </Stack>
-            
+
             <Box width={"100%"} px={"110px"}>
                 <Box width={"100%"} px={"48px"} py={"46px"}>
                     <Grid container spacing={"38px"}>
@@ -77,7 +93,13 @@ export default function Page() {
                                     alignItems={"center"}
                                     overflow={"hidden"}
                                 >
-                                    <Stack height={"100%"} width={"50%"} bgcolor={"white"} />
+                                    <Stack height={"100%"} width={"50%"} overflow={"hidden"}>
+                                        <Image
+                                            src={data.image}
+                                            alt={data.name}
+                                            style={{ objectFit: "cover" }}
+                                        />
+                                    </Stack>
                                     <Typography width={"50%"} color={"text.primary"} fontWeight={"Bold"} fontSize={"24px"}>
                                         {data.name}
                                     </Typography>

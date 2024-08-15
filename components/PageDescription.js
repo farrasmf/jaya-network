@@ -25,7 +25,7 @@ export default function PageDescription({ title, description }) {
             <Typography
                 fontSize={"16px"}
                 fontWeight={"Reguler"}
-                color={"text.primary"}
+                color={"text.secondary"}
                 width={"450px"}
                 textAlign={"justify"}
             >

@@ -41,6 +41,7 @@ export default function SearchField({ title, onSearch, searchValue }) {
                     value={searchValue}
                     onChange={e => onSearch(e.target.value)}
                     sx={{
+                        border: '1px solid black',
                         borderRadius: '12px',
                         color: 'text.secondary',
                     }}
@@ -51,11 +52,11 @@ export default function SearchField({ title, onSearch, searchValue }) {
                             }}
                             sx={{
                                 fontSize: 14,
-                                color: "base.base50",
+                                color: "black",
                                 cursor: "pointer",
                                 transform: "translateX(-4px)",
                                 "&:hover": {
-                                    color: "base.base60",
+                                    color: "black",
                                 },
                             }}
                         />

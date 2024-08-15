@@ -3,7 +3,7 @@ import ButtonHeader from '@/components/ButtonHeader'
 import { Avatar, Box, Button, IconButton, Menu, MenuItem, Paper, Stack } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import JayaNetworkLogo from '@/assets/jaya-network-logo.png'
+import HIPMIJayaLogo from '@/assets/hipmi-jaya-logo.png'
 import { usePathname, useRouter } from 'next/navigation'
 import { logOut } from './action'
 
@@ -62,10 +62,10 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <Box sx={{ height: '100vh', width: '100%' }} bgcolor={'#262626'}>
+            <Box sx={{ height: '100vh', width: '100%' }}>
                 <Box
                     component={Paper}
-                    bgcolor={'#262626'}
+                    bgcolor={'primary.main'}
                     width={'100%'}
                     height={'100px'}
                     display={'flex'}
@@ -76,7 +76,7 @@ export default function Layout({ children }) {
                     position={'fixed'}
                     zIndex={10}
                 >
-                    <Image priority alt='Jaya Network' src={JayaNetworkLogo} />
+                    <Image priority alt='Jaya Network' src={HIPMIJayaLogo}  height={60}/>
                     <Stack direction={'row'} alignItems={'end'}>
                         {subMenu.map((item, index) => (
                             <ButtonHeader key={index} title={item.title} active={activePathname === item.path} path={item.path} />
@@ -90,7 +90,7 @@ export default function Layout({ children }) {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                         >
-                            <Avatar sx={{ bgcolor: 'secondary.main', width: 32, height: 32 }}>F</Avatar>
+                            <Avatar sx={{ bgcolor: 'secondary.main', width: 32, height: 32 }}>R</Avatar>
                         </IconButton>
                     </Stack>
                 </Box>
@@ -114,19 +114,19 @@ export default function Layout({ children }) {
                 PaperProps={{
                     elevation: 0,
                     sx: {
-                        border: '1px solid white',
+                        border: '1px solid black',
                         borderRadius: '12px',
                         width: 200,
-                        color: 'text.primary',
+                        color: 'text.secondary',
                         overflow: 'visible',
                         mt: 1.5,
-                        bgcolor: '#262626',
                     },
                 }}
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                <MenuItem onClick={() => router.push('/dashboard/profile')}>My Profile</MenuItem>
+                <MenuItem onClick={() => router.push('/auth/login')}>Log Out</MenuItem>
             </Menu>
         </>
     )

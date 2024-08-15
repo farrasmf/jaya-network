@@ -58,15 +58,15 @@ export async function updateSession(request) {
     // refreshing the auth token
     const { data } = await supabase.auth.getUser()
 
-    if (data.user) {
-        if (url.pathname === '/auth/login' || url.pathname === '/auth/register') {
-            return NextResponse.redirect(new URL('/dashboard', request.url))
-        }
+    // if (data.user) {
+    //     if (url.pathname === '/auth/login' || url.pathname === '/auth/register') {
+    //         return NextResponse.redirect(new URL('/dashboard', request.url))
+    //     }
 
-        return response
-    } else {
-        if (url.pathname !== '/auth/login') {
-            return NextResponse.redirect(new URL('/auth/login', request.url))
-        }
-    }
+    //     return response
+    // } else {
+    //     if (url.pathname !== '/auth/login') {
+    //         return NextResponse.redirect(new URL('/auth/login', request.url))
+    //     }
+    // }
 }

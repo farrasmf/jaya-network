@@ -6,11 +6,19 @@ import PageDescription from '@/components/PageDescription'
 import SearchField from '@/components/SearchField'
 import { Box, Paper, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import ProfileImage1 from '@/assets/Profile Carousel/profile-1.jpg';
+import ProfileImage2 from '@/assets/Profile Carousel/profile-2.jpg';
+import ProfileImage3 from '@/assets/Profile Carousel/profile-3.jpg';
+import ProfileImage4 from '@/assets/Profile Carousel/profile-4.jpg';
+import ProfileImage5 from '@/assets/Profile Carousel/profile-5.jpg';
+import ProfileImage6 from '@/assets/Profile Carousel/profile-6.jpg';
+import ProfileImage7 from '@/assets/Profile Carousel/profile-7.jpg';
 import JakartaUtara from '@/assets/jakarta-utara.svg'
 import JakartaPusat from '@/assets/jakarta-pusat.svg'
 import JakartaBarat from '@/assets/jakarta-barat.svg'
 import JakartaTimur from '@/assets/jakarta-timur.svg'
 import JakartaSelatan from '@/assets/jakarta-selatan.svg'
+import { readMember } from '../action'
 
 export default function Page() {
     const [memberData, setMemberMData] = useState([]);
@@ -18,39 +26,33 @@ export default function Page() {
     const [searchValue, setSearchValue] = useState("");
     const [cityFilter, setCityFilter] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
+    console.log(memberData);
+    
+    const profileImage = [ ProfileImage1, ProfileImage2, ProfileImage3, ProfileImage4, ProfileImage5, ProfileImage6, ProfileImage7, ProfileImage2, ProfileImage3 ];
 
-    const cityFilterData = [
-        "Jakarta Utara",
-        "Jakarta Pusat",
-        "Jakarta Barat",
-        "Jakarta Timur",
-        "Jakarta Selatan",
-        "Kepulauan Seribu"
-    ]
+    const cityFilterData = [ "Jakarta Utara", "Jakarta Pusat", "Jakarta Barat", "Jakarta Timur", "Jakarta Selatan",]
 
-    const categoryFilterData = [
-        "Food & Beverages",
-        "Kesehatan",
-        "Manufaktur",
-        "Perkebunan & Kehutanan",
-        "Keuangan",
-        "Asuransi & Dana Pensiun",
-        "Pangan & Pupuk",
-        "Transportasi & Logistik",
-        "Pariwisata",
-        "Telekomunikasi & Media",
-        "Pendidikan",
-        "Teknologi Digital",
-        "Hiburan",
-        "Energi",
-    ]
+    const categoryFilterData = ["Food & Beverage", "Kesehatan", "Manufaktur", "Perkebunan & Kehutanan", "Keuangan", "Asuransi & Dana Pensiun", "Pangan & Pupuk", "Transportasi & Logistik", "Pariwisata", "Telekomunikasi & Media", "Pendidikan", "Teknologi Digital", "Hiburan", "Energi"]
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await readMember();
+            const { error, data } = JSON.parse(result);
+            if (data) {
+                setMemberMData(data);
+            } else if (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, [])
 
     useEffect(() => {
         let temp = memberData.filter((item) => {
             return (
-                item.device_name.toLowerCase().includes(searchValue.toLowerCase()) &&
-                item.provinsi.toLowerCase().includes(cityFilter.toLowerCase()) &&
-                item.kota_kabupaten.toLowerCase().includes(categoryFilter.toLowerCase())
+                item.full_name.toLowerCase().includes(searchValue.toLowerCase()) &&
+                item.kota_kabupaten.toLowerCase().includes(cityFilter.toLowerCase()) &&
+                item.business[0].category.toLowerCase().includes(categoryFilter.toLowerCase())
             );
         });
         setFilteredMemberData(temp);
@@ -66,7 +68,7 @@ export default function Page() {
     };
 
     const getFillColor = (cityName) => {
-        return cityFilter === cityName ? "#003AEC" : "white";
+        return cityFilter === cityName ? "#C3F500" : "0532BB";
     };
 
     const getCityPosition = () => {
@@ -76,7 +78,7 @@ export default function Page() {
             case "Jakarta Barat": return { top: "80px", left: "330px" };
             case "Jakarta Timur": return { top: "250px", left: "80px" };
             case "Jakarta Selatan": return { top: "280px", left: "400px" };
-            default: return { bottom: "0", right: "0" };
+            default: return { bottom: "0", right: "100px" };
         }
     };
 
@@ -98,7 +100,7 @@ export default function Page() {
                 title={'Anggota HIPMI Jaya'}
                 description={'HIPMI Jaya takkan bisa mencapai titik sekarang tanpa anggota-anggotanya. Dengan database anggota HIPMI Jaya, tiap anggota dapat memperluas koneksi dan berinteraksi dengan lebih mudah.'}
             />
-            <ImageCarousel profileCarousel={true} />
+            <ImageCarousel height={"200px"} images={profileImage} slidesPreview={7} profileCarousel={true}  />
 
             <Box width={"100%"} px={"110px"} pb={"100px"}>
                 <Stack
@@ -111,7 +113,7 @@ export default function Page() {
                 >
                     <Stack gap={"38px"}>
                         <SearchField title={"Anggota"} onSearch={handleSearch} searchValue={searchValue}/>
-                        <List listName={"Daftar Anggota"} />
+                        <List listName={"Daftar Anggota"} listData={filteredMemberData} memberList={true}/>
                     </Stack>
 
                     <Stack gap={"38px"} display={"flex"} flexDirection={"column"} alignItems={"flex-start"}>
@@ -141,10 +143,9 @@ export default function Page() {
                                     fontWeight={"Bold"}
                                     color={"text.primary"}
                                 >
-                                    DKI Jakarta
+                                    {cityFilter? cityFilter : "DKI Jakarta"}
                                 </Typography>
-                                <Typography color={"text.primary"}>Jumlah penduduk: 2.938JT</Typography>
-                                <Typography color={"text.primary"}>Jumlah anggota: 2.600</Typography>
+                                <Typography color={"text.primary"}>{`Jumlah Anggota: ${filteredMemberData.length}`}</Typography>
                             </Stack>
                         </Box>
                     </Stack>

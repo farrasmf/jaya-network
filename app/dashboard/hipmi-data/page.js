@@ -2,10 +2,20 @@
 import FilterSelect from '@/components/FilterSelect'
 import PageDescription from '@/components/PageDescription'
 import { Box, Grid, Stack, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
+import React, { useEffect, useState } from 'react'
+
+const DynamicPieChart = dynamic(() => import('@/components/PieChart'), { ssr: false });
 
 export default function Page() {
-    const [dataFilter, setDataFilter] = useState("");
+    const [dataFilter, setDataFilter] = useState("Data Anggota");
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     const dataFilterData = [
         "Data Anggota",
@@ -13,6 +23,35 @@ export default function Page() {
         "Pencapaian & Penghargaan",
         "Laporan Keuangan",
     ]
+
+    const data1 = [
+        { name: 'Jakarta Utara', value: 400 },
+        { name: 'Jakarta Barat', value: 300 },
+        { name: 'Jakarta Pusat', value: 300 },
+        { name: 'Jakarta TImur', value: 200 },
+        { name: 'Jakarta Selatan', value: 200 },
+    ];
+
+    const data2 = [
+        { name: 'Pria', value: 456 },
+        { name: 'Wanita', value: 312 },
+    ];
+
+    const data3 = [
+        { name: '18 - 25 tahun', value: 320 },
+        { name: '26 - 35 tahun ', value: 240 },
+        { name: '36 - 45 tahun', value: 210 },
+        { name: '46 - 55 tahun', value: 112 },
+        { name: '> 55 tahun', value: 35 },
+    ];
+
+    const data4 = [
+        { name: 'Golf', value: 121 },
+        { name: 'Running', value: 40 },
+        { name: 'Hiking', value: 215 },
+        { name: 'Fishing', value: 80 },
+        { name: 'Basket', value: 231 },
+    ];
 
     return (
         <Box
@@ -50,7 +89,7 @@ export default function Page() {
                             </Typography>
 
                             <Typography fontSize={"96px"} fontWeight={"bold"} color={"secondary.main"}>
-                                157
+                                454
                             </Typography>
                         </Stack>
                     </Stack>
@@ -58,19 +97,31 @@ export default function Page() {
                     <Box>
                         <Grid container spacing={4}>
                             <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                                <Stack border={"1px solid #E3E3E3"} borderRadius={"12px"} width={"100%"} height={"400px"} />
+                                <Stack border={"1px solid black"} borderRadius={"12px"} width={"100%"} height={"400px"} pt={"16px"}>
+                                    <Typography alignSelf={"center"}>Pembagian Anggota Berdasarkan Lokasi</Typography>
+                                    <DynamicPieChart data={data1} />
+                                </Stack>
                             </Grid>
 
                             <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                                <Stack border={"1px solid #E3E3E3"} borderRadius={"12px"} width={"100%"} height={"400px"} />
+                                <Stack border={"1px solid black"} borderRadius={"12px"} width={"100%"} height={"400px"} pt={"16px"}>
+                                    <Typography alignSelf={"center"}>Pembagian Anggota Berdasarkan Jenis Kelamin</Typography>
+                                    <DynamicPieChart data={data2} />
+                                </Stack>
                             </Grid>
 
                             <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                                <Stack border={"1px solid #E3E3E3"} borderRadius={"12px"} width={"100%"} height={"400px"} />
+                                <Stack border={"1px solid black"} borderRadius={"12px"} width={"100%"} height={"400px"} pt={"16px"}>
+                                    <Typography alignSelf={"center"}>Pembagian Anggota Berdasarkan Usia</Typography>
+                                    <DynamicPieChart data={data3} />
+                                </Stack>
                             </Grid>
 
                             <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
-                                <Stack border={"1px solid #E3E3E3"} borderRadius={"12px"} width={"100%"} height={"400px"} />
+                                <Stack border={"1px solid black"} borderRadius={"12px"} width={"100%"} height={"400px"} pt={"16px"}>
+                                    <Typography alignSelf={"center"}>Pembagian Anggota Berdasarkan Hobi</Typography>
+                                    <DynamicPieChart data={data4} />
+                                </Stack>
                             </Grid>
                         </Grid>
                     </Box>

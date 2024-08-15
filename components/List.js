@@ -1,10 +1,10 @@
 "use client"
 import { SortIcon } from '@/assets/Svg'
 import { Check } from '@mui/icons-material';
-import { Box, Button, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Paper, Stack, Typography } from '@mui/material'
+import { Box, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Paper, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
-export default function List({ listName }) {
+export default function List({ listName, listData, memberList }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
 
@@ -22,97 +22,17 @@ export default function List({ listName }) {
         setExpandedIndex(expandedIndex === index ? null : index);
     };
 
-    const dummyData = [
-        {
-            id: 1,
-            name: "Resto Bu Rina",
-            location: "Kemayoran, Jakarta Pusat",
-            categories: "Restoran",
-            angkatan: "2022",
-            description:
-                "Giulia&apos;s Chicago Style Pizzeria merupakan restoran rumahan yang mengusung tema western, dengan menu utamanya yaitu pizza tebal ala Chicago yang terlihat seperti pie. Giulia&apos;s Pizzeria sering membuka booth di berbagai event yang digemari anak muda.",
-            address:
-                "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
-            hours: "10:30 - 21:00",
-            phone: "0815 1917 1850",
-        },
-        {
-            id: 2,
-            name: "Resto Kojo",
-            location: "Cipete, Jakarta Selatan",
-            categories: "Restoran Keren",
-            angkatan: "2016",
-            description:
-                "Makanannya enak pelayanannya lezat yummy",
-            address:
-                "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
-            hours: "10:30 - 21:00",
-            phone: "0815 1917 1850",
-        },
-        {
-            id: 3,
-            name: "Resto Kojo",
-            location: "Cipete, Jakarta Selatan",
-            categories: "Restoran Keren",
-            angkatan: "2016",
-            description:
-                "Makanannya enak pelayanannya lezat yummy",
-            address:
-                "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
-            hours: "10:30 - 21:00",
-            phone: "0815 1917 1850",
-        },
-        {
-            id: 4,
-            name: "Resto Kojo",
-            location: "Cipete, Jakarta Selatan",
-            categories: "Restoran Keren",
-            angkatan: "2016",
-            description:
-                "Makanannya enak pelayanannya lezat yummy",
-            address:
-                "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
-            hours: "10:30 - 21:00",
-            phone: "0815 1917 1850",
-        },
-        {
-            id: 5,
-            name: "Resto Kojo",
-            location: "Cipete, Jakarta Selatan",
-            categories: "Restoran Keren",
-            angkatan: "2016",
-            description:
-                "Makanannya enak pelayanannya lezat yummy",
-            address:
-                "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
-            hours: "10:30 - 21:00",
-            phone: "0815 1917 1850",
-        },
-        {
-            id: 6,
-            name: "Resto Kojo",
-            location: "Cipete, Jakarta Selatan",
-            categories: "Restoran Keren",
-            angkatan: "2016",
-            description:
-                "Makanannya enak pelayanannya lezat yummy",
-            address:
-                "Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta",
-            hours: "10:30 - 21:00",
-            phone: "0815 1917 1850",
-        },
-    ]
-
     return (
         <>
             <Box
                 component={Paper}
                 sx={{
-                    bgcolor: "white",
+                    border: "1px solid black",
                     width: "360px",
                     height: "518px",
                     borderRadius: "12px",
                     overflow: "hidden",
+                    boxShadow: "none",
                 }}
             >
                 <Stack
@@ -147,9 +67,10 @@ export default function List({ listName }) {
                     }}
                 >
                     {/* List Start */}
-                    {dummyData.map((item, index) => (
+                    {listData?.map((item, index) => (
                         <Stack
-                            key={item.id}
+                            position={"relative"}
+                            key={index}
                             width={"100%"}
                             bgcolor={"primary.main"}
                             borderRadius={"12px"}
@@ -174,17 +95,17 @@ export default function List({ listName }) {
 
                                 </Stack>
                                 <Stack>
-                                    <Typography fontWeight={"Bold"} fontSize={"14px"}>{item.name}</Typography>
-                                    <Typography fontWeight={"Reguler"} fontSize={"10px"}>{item.location}</Typography>
+                                    <Typography fontWeight={"Bold"} fontSize={"14px"}>{item.company_name || item.full_name}</Typography>
+                                    <Typography fontWeight={"Reguler"} fontSize={"10px"}>{`${item.kelurahan}, ${item.kota_kabupaten}`}</Typography>
                                     <Stack direction={"row"} gap={"8px"}>
                                         <Typography fontWeight={"Reguler"} fontSize={"10px"}>Kategori:</Typography>
-                                        <Typography fontWeight={"Reguler"} fontSize={"10px"} color={"text.secondary"} bgcolor={"secondary.main"} borderRadius={"8px"} width={"80px"} align='center'>{item.categories}</Typography>
-                                        <Typography fontWeight={"Reguler"} fontSize={"10px"} color={"text.secondary"} bgcolor={"secondary.main"} borderRadius={"8px"} width={"80px"} align='center'>{`HIPMI ${item.angkatan}`}</Typography>
+                                        <Typography fontWeight={"Reguler"} fontSize={"10px"} color={"text.secondary"} bgcolor={"secondary.main"} borderRadius={"8px"} width={"80px"} align='center'>{item.category || item.business[0].category}</Typography>
+                                        <Typography fontWeight={"Reguler"} fontSize={"10px"} color={"text.secondary"} bgcolor={"secondary.main"} borderRadius={"8px"} width={"80px"} align='center'>HIPMI {item.membership_year || item.members.membership_year}</Typography>
                                     </Stack>
                                 </Stack>
                             </Stack>
 
-                            {expandedIndex === index && (
+                            {!memberList && expandedIndex === index && (
                                 <Stack gap={"8px"} width={"100%"}>
                                     <Stack direction={"row"} width={"100%"} height={"88px"} gap={"6px"}>
                                         <Stack bgcolor={"white"} borderRadius={"12px"} width={"88px"} height={"88px"} />
@@ -194,26 +115,78 @@ export default function List({ listName }) {
 
 
                                     <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify'>
-                                        Giulia&apos;s Chicago Style Pizzeria merupakan restoran rumahan yang mengusung tema western, dengan menu utamanya yaitu pizza tebal ala Chicago yang terlihat seperti pie. Giulia&apos;s Pizzeria sering membuka booth di berbagai event yang digemari anak muda.
+                                        {item.company_description}
                                     </Typography>
 
                                     <>
                                         <Stack direction={"row"} justifyContent={"space-between"} width={"100%"}>
                                             <Typography fontWeight={"Reguler"} fontSize={"10px"}>Alamat</Typography>
                                             <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
-                                                E Jl. Bangka VIIIC No.20, RT.5/RW.12, Pela Mampang, Kec. Mampang Prpt., Jakarta, Daerah Khusus Ibukota Jakarta
+                                                {`${item.company_address}, ${item.kecamatan}, ${item.kelurahan}, ${item.kota_kabupaten}, ${item.provinsi}`}
                                             </Typography>
                                         </Stack>
                                         <Stack direction={"row"} justifyContent={"space-between"} width={"100%"}>
                                             <Typography fontWeight={"Reguler"} fontSize={"10px"} >Jam Operasional</Typography>
                                             <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
-                                                10:30 - 21:00 0815 1917 1850
+                                                {`${item.open_hour} - ${item.close_hour}`}
                                             </Typography>
                                         </Stack>
                                         <Stack direction={"row"} justifyContent={"space-between"}>
                                             <Typography fontWeight={"Reguler"} fontSize={"10px"} >Telepon</Typography>
                                             <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
-                                                0815 1917 1850
+                                                {item.phone_number}
+                                            </Typography>
+                                        </Stack>
+                                    </>
+                                </Stack>
+                            )}
+
+                            {memberList && expandedIndex === index && (
+                                <Stack gap={"8px"} width={"100%"} >
+                                    <Stack direction={"row"} width={"100%"} height={"88px"} gap={"6px"}>
+                                        <Stack bgcolor={"white"} borderRadius={"12px"} width={"88px"} height={"88px"} />
+                                        <Stack bgcolor={"white"} borderRadius={"12px"} width={"88px"} height={"88px"} />
+                                        <Stack bgcolor={"white"} borderRadius={"12px"} width={"88px"} height={"88px"} />
+                                    </Stack>
+
+
+                                    <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify'>
+                                        {item.self_description}
+                                    </Typography>
+
+                                    <>
+                                        <Stack direction={"row"} justifyContent={"space-between"} width={"100%"}>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"}>Alamat</Typography>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
+                                                {`${item.address}, ${item.kecamatan}, ${item.kelurahan}, ${item.kota_kabupaten}, ${item.provinsi}`}
+                                            </Typography>
+                                        </Stack>
+
+                                        <Stack direction={"row"} justifyContent={"space-between"} width={"100%"}>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} >Media Sosial</Typography>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
+                                                {`${item.social_media} (Insragram)`}
+                                            </Typography>
+                                        </Stack>
+
+                                        <Stack direction={"row"} justifyContent={"space-between"}>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} >Telepon</Typography>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
+                                                {item.phone_number}
+                                            </Typography>
+                                        </Stack>
+
+                                        <Stack direction={"row"} justifyContent={"space-between"} width={"100%"}>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} >Email</Typography>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
+                                                {item.email}
+                                            </Typography>
+                                        </Stack>
+
+                                        <Stack direction={"row"} justifyContent={"space-between"} width={"100%"}>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} >Hobi</Typography>
+                                            <Typography fontWeight={"Reguler"} fontSize={"10px"} align='justify' width={"160px"}>
+                                                {item.interest}
                                             </Typography>
                                         </Stack>
                                     </>
@@ -222,6 +195,16 @@ export default function List({ listName }) {
                         </Stack>
                     ))}
                     {/* List End */}
+                    <Stack
+                        width={"100%"}
+                        height={"400px"}
+                        bgcolor={"white"}
+                        borderRadius={"12px"}
+                        px={"20px"}
+                        py={"14px"}
+                        gap={"12px"}
+                    />
+
                 </Stack>
             </Box>
             <Menu
@@ -239,6 +222,7 @@ export default function List({ listName }) {
                         overflow: 'visible',
                         mt: 1.5,
                         bgcolor: 'text.primary',
+                        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
                     },
                 }}
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -250,7 +234,12 @@ export default function List({ listName }) {
                         <ListItemIcon>
                             <Check />
                         </ListItemIcon>
-                        Log Out
+                        Name (A - Z)
+                    </MenuItem>
+                    <MenuItem sx={{ fontSize: "12px" }}>
+                        <ListItemIcon>
+                        </ListItemIcon>
+                        Name (Z - A)
                     </MenuItem>
                 </MenuList>
             </Menu>

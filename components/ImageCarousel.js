@@ -3,10 +3,10 @@ import { Box, Icon, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Autoplay } from 'swiper/modules';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import Image from 'next/image';
+import { ArrowDownIcon } from '@/assets/Svg';
 
 export default function ImageCarousel({ images, height, width, slidesPreview, profileCarousel }) {
     return (
@@ -45,9 +45,9 @@ export default function ImageCarousel({ images, height, width, slidesPreview, pr
                 </Stack>
                 : <></>}
 
-            <Stack width={'100%'} height={"377px"}>
+            <Stack width={'100%'} height={height}>
                 <Swiper
-                    slidesPerView={3}
+                    slidesPerView={slidesPreview}
                     spaceBetween={24}
                     freeMode={true}
                     modules={[FreeMode, Autoplay]}
@@ -57,15 +57,15 @@ export default function ImageCarousel({ images, height, width, slidesPreview, pr
                         disableOnInteraction: false
                     }}
                 >
-                    <SwiperSlide>Slide 1</SwiperSlide>
-                    <SwiperSlide>Slide 2</SwiperSlide>
-                    <SwiperSlide>Slide 3</SwiperSlide>
-                    <SwiperSlide>Slide 4</SwiperSlide>
-                    <SwiperSlide>Slide 5</SwiperSlide>
-                    <SwiperSlide>Slide 6</SwiperSlide>
-                    <SwiperSlide>Slide 7</SwiperSlide>
-                    <SwiperSlide>Slide 8</SwiperSlide>
-                    <SwiperSlide>Slide 9</SwiperSlide>
+                    {images?.map((image, index) => (
+                        <SwiperSlide key={index} style={{ borderRadius: "12px", overflow: "hidden" }}>
+                                <Image
+                                    src={image}
+                                    alt="image"
+                                    style={{ objectFit: "cover" }}
+                                />
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </Stack>
 
@@ -80,7 +80,7 @@ export default function ImageCarousel({ images, height, width, slidesPreview, pr
                         cek database lengkap di sini
                     </Typography>
                     <Icon color='white'>
-                        <KeyboardArrowDownIcon/>
+                        <ArrowDownIcon />
                     </Icon>
                 </Stack>
                 : <></>}

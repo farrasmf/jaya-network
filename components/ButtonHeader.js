@@ -6,13 +6,18 @@ export default function ButtonHeader({ title, active, path }) {
         <Button
             variant={active ? "contained" : "text"}
             sx={{
-                color: "white",
+                mr: "10px",
+                color: active ? "text.secondary" : "text.primary",
                 height: "36px",
                 px: "20px",
                 py: "5px",
                 borderRadius: "16px",
                 fontSize: "16px",
                 fontWeight: "Reguler",
+                '&.MuiButton-contained': {
+                    bgcolor: "secondary.main",
+                    color: "text.secondary",
+                }
             }}
             href={path}
         >
